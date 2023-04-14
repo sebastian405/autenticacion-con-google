@@ -1,12 +1,25 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { loginRouter } from "./routes/login.routes.js";
+import { loginRouter } from './routes/login.routes.js';
 import passport from 'passport';
-import "./middlewares/google.js";
+import './middlewares/google.js';
+import ejs from 'ejs';
+import path from 'path';
+import * as url from 'url';
+import routeHome from './routes/backoffice.routes.js';
 
 dotenv.config();
 
 const app = express();
+
+// Por si __dirname no funciona
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+app.set("views", path.join(__dirname, "views"));
+
+// Asignacion de plantilla ejs
+app.set("view engine", "ejs");
 
 // MIDDLEWARES
 app.use(express.json());
@@ -21,12 +34,14 @@ app.use("/auth", passport.authenticate("auth-google", {
     session: false
 }), loginRouter);
 
+app.use("/", routeHome);
+
 // SE CAPTURA EL PUERTO QUE SE ENVUENTRA EN LOS AMBIENTES
 app.set("port", process.env.PORT || 9999);
 
 // ESTO SE VE EN LA RUTA PRINCIPAL
-app.get("/", (req, res) => {
-    res.send("Hola, Bienvenido");
-});
+// app.get("/", (req, res) => {
+//     res.send("Hola, Bienvenido");
+// });
 
 export default app;
