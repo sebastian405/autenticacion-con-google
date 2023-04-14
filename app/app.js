@@ -7,6 +7,7 @@ import ejs from 'ejs';
 import path from 'path';
 import * as url from 'url';
 import routeHome from './routes/backoffice.routes.js';
+import route from "./routes/home.routes.js"
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.set("view engine", "ejs");
 // MIDDLEWARES
 app.use(express.json());
 app.use(passport.initialize());
+app.use(express.static(__dirname + '../public'));
 
 // RUTAS Y PERMISOS DE GOOGLE
 app.use("/auth", passport.authenticate("auth-google", {
@@ -35,6 +37,7 @@ app.use("/auth", passport.authenticate("auth-google", {
 }), loginRouter);
 
 app.use("/", routeHome);
+app.use("/", route);
 
 // SE CAPTURA EL PUERTO QUE SE ENVUENTRA EN LOS AMBIENTES
 app.set("port", process.env.PORT || 9999);
