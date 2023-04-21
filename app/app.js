@@ -8,6 +8,7 @@ import path from 'path';
 import * as url from 'url';
 import routeHome from './routes/backoffice.routes.js';
 import route from "./routes/home.routes.js"
+import dash from './routes/dashboard.routes.js';
 
 dotenv.config();
 
@@ -27,7 +28,7 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(express.static(__dirname + '../public'));
 
-// RUTAS Y PERMISOS DE GOOGLE
+// TODAS LAS RUTAS Y PERMISOS DE GOOGLE
 app.use("/auth", passport.authenticate("auth-google", {
     scope: [
         "https://www.googleapis.com/auth/userinfo.email",
@@ -38,6 +39,7 @@ app.use("/auth", passport.authenticate("auth-google", {
 
 app.use("/", routeHome);
 app.use("/", route);
+app.use("/dashboard", dash);
 
 // SE CAPTURA EL PUERTO QUE SE ENVUENTRA EN LOS AMBIENTES
 app.set("port", process.env.PORT || 9999);

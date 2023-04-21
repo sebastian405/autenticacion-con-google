@@ -14,7 +14,7 @@ route.get("/contact", (req, res) => {
     res.render("contact");
 });
 
-route.get("/index", (req, res) => {
+route.get("/", (req, res) => {
     res.render("index");
 });
 
