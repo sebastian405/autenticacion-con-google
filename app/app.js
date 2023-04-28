@@ -9,6 +9,7 @@ import * as url from 'url';
 import routeHome from './routes/backoffice.routes.js';
 import route from "./routes/home.routes.js"
 import dash from './routes/dashboard.routes.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(passport.initialize());
 app.use(express.static(__dirname + '../public'));
+app.use(cookieParser());
 
 // TODAS LAS RUTAS Y PERMISOS DE GOOGLE
 app.use("/auth", passport.authenticate("auth-google", {
