@@ -41,7 +41,7 @@ app.use("/auth", passport.authenticate("auth-google", {
 
 app.use("/", routeHome);
 app.use("/", route);
-app.use("/dashboard", dash);
+app.use("/v1", dash);
 
 // SE CAPTURA EL PUERTO QUE SE ENVUENTRA EN LOS AMBIENTES
 app.set("port", process.env.PORT || 9999);

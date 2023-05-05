@@ -16,7 +16,7 @@ loginRouter.get("/google", (req, res) => {
         nombre: name,
         correo: email,
         foto: photo
-    }
+    };
 
     const token = jwt.sign(
         payload, 
@@ -27,7 +27,7 @@ loginRouter.get("/google", (req, res) => {
 
     res.cookie("ckmp", token);
 
-    res.redirect("/dashboard/inicio");
+    res.redirect("/v1/inicio");
     // res.render("backOffice", {
     //     nombre: name
     // });
