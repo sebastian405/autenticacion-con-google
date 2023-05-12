@@ -2,6 +2,7 @@ import { Router, response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
+import { strategies } from "passport";
 
 dotenv.config();
 
@@ -108,6 +109,7 @@ dash.get("/categoria", (req, res) => {
 dash.post("/guardar", (req, res) => {
     if(req.body.name){
 
+        let data = {name: req.body.name};
         let ruta = "http://localhost:3000/api/user";
         let metodo = "post";
 
@@ -117,18 +119,17 @@ dash.post("/guardar", (req, res) => {
             Headers: {
                 "Content-Type": "application/json"
             },
-            data:{
-                name: req.body.name
-            }
+            body: JSON.stringify(data)
         };
 
         try {
             const result = fetch(ruta, option)
             .then(res => res.json())
             .then(data => {
-
+                //aqui vamos
             })
             .catch(err => console.log("Error al consumir API: " + err))
+            res.redirect("/v1/usuario");
         } catch (error) {
             
         }
