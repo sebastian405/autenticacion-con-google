@@ -1,0 +1,72 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Edit users
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/v1/inicio"><i class="fa fa-home"></i> </a></li>
+        </ol>
+    </section>
+
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+
+
+
+                </h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                        <i class="fa fa-times"></i></button>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <form action="guardar" method="POST">
+
+                    <div class="form-group">
+                        <label>Id</label>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Enter ..." 
+                        value="<%= datos.id %>" 
+                        name="id" 
+                        readonly>
+                    </div>
+    
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Username" 
+                        name="name" 
+                        value="<%= datos.name %>">
+                    </div>
+    
+                    <div class="box-footer">
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-app">
+                                <i class="fa fa-save"></i> Save
+                            </button>
+    
+                            <a class="btn btn-app">
+                                <i class="fa fa-times"></i> Cancel
+                            </a>
+                        </div>
+    
+                    </div>
+
+                </form>
+                <!-- /.box -->
+    </section>
+</div>
