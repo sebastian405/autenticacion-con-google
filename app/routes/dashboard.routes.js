@@ -171,7 +171,41 @@ dash.get("/edit-user", (req, res) => {
             console.error("error con el token" + error);
         }
     }
-})
+});
+
+//Eliminar información
+dash.get("/borrar", async(req, res) => {
+    const id = req.query.id;
+
+    if (req.cookies.ckmp){
+        try {
+            const token = jwt.verify(req.cookies.ckmp, process.env.SECRET_KEY);
+
+            const url = `http://localhost:3000/api/user/${id}`;
+
+            const option = {
+                method: "DELETE"
+            };
+
+            const result = await fetch(url, option)
+            .then(res => res.json())
+            .then(data => {
+                if (data[0].affectedRows==1){
+                  
+                }else{
+                    console.log("NO BORRO");
+                }
+            })
+            .catch(err => console.log("Error al consumir API: " + err))
+
+            res.redirect("/v1/usuario");
+
+        } catch(error){
+            console.error("error con el token" + error);
+        }
+    }
+    
+});
 
 // Ruta para salir del dash
 dash.get("/salir", (req, res) => {
